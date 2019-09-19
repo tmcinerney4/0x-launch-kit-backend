@@ -1,0 +1,16 @@
+version: '3'
+services:
+    ganache:
+        image: fvictorio/0x-ganache-testing:0.0.1
+        ports:
+            - '8545:8545'
+    launch-kit:
+        image: fvictorio/0x-launch-kit-testing
+        environment:
+            HTTP_PORT: '3000'
+            RPC_URL: 'http://ganache:8545'
+            NETWORK_ID: '4'
+        ports:
+            - '3000:3000'
+        depends_on:
+            - ganache
